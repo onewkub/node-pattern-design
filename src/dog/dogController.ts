@@ -7,12 +7,10 @@ export const getAllDog = async (req: Request, res: Response) => {
 		res.status(200).json(dogs)
 	} catch (error) {
         res.status(500).json({})
-        
+    
 
 
 
 
-
-        
 	}
 }
