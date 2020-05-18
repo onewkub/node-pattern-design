@@ -1,16 +1,20 @@
-import express from 'express';
+import express from 'express'
 import apiRoute from './apiRoute'
-const app = express();
+import cors from 'cors'
+import logger from './logger'
+const app = express()
 
-const PORT = 8080;
+const PORT = 8080
 
-app.get('/', (req, res)=>{
-    res.send(`hello World test`)
+app.use(cors())
+
+app.get('/', (req, res) => {
+	res.send(`hello World test`)
 })
 
-app.use('/api', apiRoute);
+app.use('/api', apiRoute)
 
-app.listen(PORT, ()=>{
-    console.log(`open on: ${PORT}`)
+app.listen(PORT, () => {
+	console.log(`open on: ${PORT}`)
+	logger.info(`here we go!!!!`)
 })
-
