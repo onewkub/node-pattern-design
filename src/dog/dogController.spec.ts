@@ -16,7 +16,7 @@ const mockResponse = () => {
   describe("first test", ()=>{
       it('add', ()=>{
           let result = 3+3;
-          expect(result).toBe(6);
+          expect(result).toBe(7);
       }
       )
   })
