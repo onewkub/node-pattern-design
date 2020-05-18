@@ -1,7 +1,7 @@
-import express from 'express';
+import express from 'express'
 import dogRoute from './dog/dogRoute'
-const app = express();
+const app = express()
 
-app.use('/dogs', dogRoute);
+app.use('/dogs', dogRoute)
 
-export default app;
+export default app
