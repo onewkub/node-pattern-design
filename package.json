@@ -33,7 +33,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "pretty-quick --staged"
+			"pre-commit": "npm run eslint ./src/**/*.ts && pretty-quick --staged"
 		}
 	},
 	"prettier": {

@@ -2,61 +2,59 @@ import * as dogController from './dogController'
 import * as dogDB from './dogDB'
 
 const mockResponse = () => {
-    const res: any = {};
-    res.status = jest.fn().mockReturnValue(res);
-    res.json = jest.fn().mockReturnValue(res);
-    return res;
-  };
-  
-  const mockRequest: any = (req: any = {}) => {
-    console.log("request: ", req)
-    return req
-  }
+	const res: any = {}
+	res.status = jest.fn().mockReturnValue(res)
+	res.json = jest.fn().mockReturnValue(res)
+	return res
+}
 
-  describe("first test", ()=>{
-      it('add', ()=>{
-          let result = 3+3;
-          expect(result).toBe(6);
-      }
-      )
-  })
+const mockRequest: any = (req: any = {}) => {
+	console.log('request: ', req)
+	return req
+}
 
-  describe("dog content", ()=>{
-      describe('get all dog', () => {
-          let fetchAllDogSpy: any;
+describe('first test', () => {
+	it('add', () => {
+		let result = 3 + 3
+		expect(result).toBe(6)
+	})
+})
 
-          beforeEach(()=>{
-              fetchAllDogSpy = jest.spyOn(dogDB, 'fetchAllDog');
-          })
+describe('dog content', () => {
+	describe('get all dog', () => {
+		let fetchAllDogSpy: any
 
-          afterEach(()=>{
-              fetchAllDogSpy.mockRestore();
-          })
-          it('get all dog succesfully, should return dogs', async ()=>{
-            const req = mockRequest();
-            const res = mockResponse();
-            fetchAllDogSpy = fetchAllDogSpy.mockResolvedValue(dogDB.EXAMPLE);
-            await dogController.getAllDog(req, res)
+		beforeEach(() => {
+			fetchAllDogSpy = jest.spyOn(dogDB, 'fetchAllDog')
+		})
 
-            expect(res.json).toHaveBeenCalledWith(dogDB.EXAMPLE);
-          })
-          it('get all dog succesfully, should return dogs (2)', async ()=>{
-            const req = mockRequest();
-            const res = mockResponse();
-            const twoDog  = dogDB.EXAMPLE.filter(d => d.id !== "1");
-            fetchAllDogSpy = fetchAllDogSpy.mockResolvedValue(twoDog);
-            await dogController.getAllDog(req, res)
+		afterEach(() => {
+			fetchAllDogSpy.mockRestore()
+		})
+		it('get all dog succesfully, should return dogs', async () => {
+			const req = mockRequest()
+			const res = mockResponse()
+			fetchAllDogSpy = fetchAllDogSpy.mockResolvedValue(dogDB.EXAMPLE)
+			await dogController.getAllDog(req, res)
 
-            expect(res.json).toHaveBeenCalledWith(twoDog);
-          })
-          it('get all dog fail, should return status 500', async ()=>{
-              const req = mockRequest();
-              const res = mockResponse();
+			expect(res.json).toHaveBeenCalledWith(dogDB.EXAMPLE)
+		})
+		it('get all dog succesfully, should return dogs (2)', async () => {
+			const req = mockRequest()
+			const res = mockResponse()
+			const twoDog = dogDB.EXAMPLE.filter((d) => d.id !== '1')
+			fetchAllDogSpy = fetchAllDogSpy.mockResolvedValue(twoDog)
+			await dogController.getAllDog(req, res)
 
-              fetchAllDogSpy = fetchAllDogSpy.mockRejectedValue('error')
-              await dogController.getAllDog(req, res);
-              expect(res.status).toHaveBeenCalledWith(500)
-          })
-      })
-      
-  })
+			expect(res.json).toHaveBeenCalledWith(twoDog)
+		})
+		it('get all dog fail, should return status 500', async () => {
+			const req = mockRequest()
+			const res = mockResponse()
+
+			fetchAllDogSpy = fetchAllDogSpy.mockRejectedValue('error')
+			await dogController.getAllDog(req, res)
+			expect(res.status).toHaveBeenCalledWith(500)
+		})
+	})
+})
