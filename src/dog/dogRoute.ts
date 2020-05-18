@@ -1,8 +1,8 @@
-import {Router} from 'express'
-import * as dogController from './dogController';
+import { Router } from 'express'
+import * as dogController from './dogController'
 
-const router = Router();
+const router = Router()
 
 router.get('/', dogController.getAllDog)
 
-export default router;
+export default router
