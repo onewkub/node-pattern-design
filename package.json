@@ -28,13 +28,13 @@
   },
   "husky": {
     "hooks": {
-     "pre-commit": "pretty-quick"
+      "pre-commit": "pretty-quick"
     }
-   },
-   "prettier": {
-     "singleQuote": true,
-     "tabWidth": 4,
-     "useTabs": true,
-     "semi": false
-   }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": true,
+    "semi": false
+  }
 }
